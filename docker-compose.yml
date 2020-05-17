@@ -1,0 +1,36 @@
+version: '3'
+services:
+  coordinator:
+    image: presto:local
+    container_name: coordinator
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./user_config/coordinator_config.properties:/var/presto/etc/config.properties
+      - ./catalog:/var/presto/etc/catalog
+  worker:
+    image: presto:local
+    depends_on:
+      - "coordinator"
+    volumes:
+      - ./user_config/worker_config.properties:/var/presto/etc/config.properties
+      - ./catalog:/var/presto/etc/catalog
+  mysql-presto:
+    image: mysql:5.7
+    container_name: mysql-presto
+    environment:
+      - MYSQL_ROOT_PASSWORD=presto
+    ports:
+      - "3306:3306"
+  postgres-presto:
+    image: postgres:11
+    container_name: postgres-presto
+    environment:
+        - POSTGRES_HOST=postgres
+        - POSTGRES_PORT=5432
+        - POSTGRES_USER=presto
+        - POSTGRES_PASSWORD=presto
+        - POSTGRES_DB=presto
+    ports:
+        - "5432:5432"
+
