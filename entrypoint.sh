@@ -32,7 +32,3 @@ for var in $(env | grep PRESTO_CFG | sed 's/^PRESTO_CFG_//'); do
 done
 
 exec launcher run --etc-dir=$PRESTO_ETC_DIR 
-
-
-
-

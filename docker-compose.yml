@@ -33,4 +33,3 @@ services:
         - POSTGRES_DB=presto
     ports:
         - "5432:5432"
-

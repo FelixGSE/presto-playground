@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PRESTO_RUNTIME_HOME=/var/presto
 
 ENV PATH=${PATH}:${PRESTO_HOME}/bin \
-	PRESTO_DATA_DIR=$PRESTO_RUNTIME_HOME/data \ 
+    PRESTO_DATA_DIR=$PRESTO_RUNTIME_HOME/data \ 
     PRESTO_ETC_DIR=$PRESTO_RUNTIME_HOME/etc
 
 LABEL org.opencontainers.image.created=$BUILD_TIME \
@@ -29,8 +29,8 @@ RUN wget https://repo1.maven.org/maven2/io/prestosql/presto-server/$PRESTO_VERSI
 &&  tar -xzf presto-server-$PRESTO_VERSION.tar.gz \
 &&  mv presto-server-$PRESTO_VERSION $PRESTO_HOME \
 &&  mkdir -p $PRESTO_RUNTIME_HOME \
-		     $PRESTO_HOME/etc \
-		     $PRESTO_DATA_DIR \
+             $PRESTO_HOME/etc \
+             $PRESTO_DATA_DIR \
              $PRESTO_ETC_DIR \
 &&  rm presto-server-$PRESTO_VERSION.tar.gz 
 
